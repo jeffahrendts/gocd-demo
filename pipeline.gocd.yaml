@@ -4,29 +4,16 @@ environments:
   development:
     environment_variables:
       environment: dev1
-  fut1:
-    environment_variables:
-      environment: fut1
 pipelines:
-  testpipe1:
+  testpipe:
     group: poc
-    display_order: 10
-    label_template: "label_t"
-    lock_behavior: none
-    parameters:
     materials:
-      getting-started-repo:
+      getting_started_repo:
         git: https://github.com/gocd-contrib/getting-started-repo.git
         branch: master
-      stages:
-        - stage1:
-          clean_workspace: false
+    stages:
+      - build:
           jobs:
             build:
-              artifacts:
-                -build:
-                  source: my-artifact.html
               tasks:
-                - exec:
-                  command: ./build
-
+                - script: ./build
