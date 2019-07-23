@@ -16,7 +16,7 @@ pipelines:
     parameters:
       param1: version
     secure_variables:
-      secure1: dsad#$#@2
+      secure1: "dsad#$#@2"
     materials:
       getting_started_repo:
         git: https://github.com/gocd-contrib/getting-started-repo.git
@@ -37,7 +37,7 @@ pipelines:
     parameters:
       param2: version
     secure_variables:
-      secure1: dsad#$#@2
+      secure1: "dsad#$#@2"
     materials:
       getting_started_repo:
         git: https://github.com/gocd-contrib/getting-started-repo.git
@@ -53,4 +53,3 @@ pipelines:
             build:
               tasks:
                 - script: 'echo "[Deploying] Service: ${GO_PIPELINE_NAME}" - ${GO_PIPELINE_COUNTER}'
-
