@@ -85,6 +85,28 @@ pipelines:
                   script: 'echo "[Build] Service: ${GO_PIPELINE_NAME} - ${GO_PIPELINE_COUNTER}"'
                   shtype: bash
                 run_if: passed
+          test:
+            timeout: 0
+            tasks:
+            - plugin:
+                configuration:
+                  id: script-executor
+                  version: '1'
+                options:
+                  script: 'echo "[Test] Service: ${GO_PIPELINE_NAME} - Param2: #{param2}"'
+                  shtype: bash
+                run_if: passed
+          secret:
+            timeout: 0
+            tasks:
+            - plugin:
+                configuration:
+                  id: script-executor
+                  version: '1'
+                options:
+                  script: 'echo "[Test] Service: ${GO_PIPELINE_NAME} - Secret: #{SECRET_PASS}"'
+                  shtype: bash
+                run_if: passed
     - deploy:
         fetch_materials: true
         keep_artifacts: false
