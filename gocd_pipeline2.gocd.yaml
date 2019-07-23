@@ -15,8 +15,6 @@ pipelines:
     group: "01-Acquistion"
     parameters:
       param1: version
-    secure_variables:
-      secure1: "dsad#$#@2"
     materials:
       getting_started_repo:
         git: https://github.com/gocd-contrib/getting-started-repo.git
@@ -36,8 +34,6 @@ pipelines:
     group: "01-Acquistion"
     parameters:
       param2: version
-    secure_variables:
-      secure1: "dsad#$#@2"
     materials:
       getting_started_repo:
         git: https://github.com/gocd-contrib/getting-started-repo.git
