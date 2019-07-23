@@ -1,0 +1,12 @@
+# Example GO_CD YAML configuration
+format_version: 5
+environments:
+  dev1:
+    environment_variables:
+      ENVIRONMENT: dev1
+  test:
+    environment_variables:
+      ENVIRONMENT: test
+  prod:
+    environment_variables:
+      ENVIRONMENT: prod

@@ -1,0 +1,105 @@
+# Example GO_CD YAML configuration
+format_version: 5
+pipelines:
+  service1:
+    group: "01-Acquistion"
+    label_template: ${COUNT}
+    lock_behavior: none
+    parameters:
+      param1: version
+    secure_variables:
+      SECRET_PASS: AES:Z8pEELZ44ACijC9U0w5tTQ==:lbYrIiMb0NlVjrBiStb23w==
+    materials:
+      getting_started_repo:
+        git: https://github.com/gocd-contrib/getting-started-repo.git
+        shallow_clone: false
+        auto_update: true
+        branch: master
+    stages:
+    - package:
+        fetch_materials: true
+        keep_artifacts: false
+        clean_workspace: false
+        approval:
+          type: success
+        jobs:
+          build:
+            timeout: 0
+            tasks:
+            - plugin:
+                configuration:
+                  id: script-executor
+                  version: '1'
+                options:
+                  script: 'echo "[Packaging] Service: ${GO_PIPELINE_NAME} - ${GO_PIPELINE_COUNTER}"'
+                  shtype: bash
+                run_if: passed
+    - deploy:
+        fetch_materials: true
+        keep_artifacts: false
+        clean_workspace: false
+        approval:
+          type: success
+        jobs:
+          build:
+            timeout: 0
+            tasks:
+            - plugin:
+                configuration:
+                  id: script-executor
+                  version: '1'
+                options:
+                  script: 'echo "[Deploying] Service: ${GO_PIPELINE_NAME} - ${GO_PIPELINE_COUNTER}"'
+                  shtype: bash
+                run_if: passed
+  service2:
+    group: "01-Acquistion"
+    label_template: ${COUNT}
+    lock_behavior: none
+    parameters:
+      param2: version
+    secure_variables:
+      SECRET_PASS: AES:Z8pEELZ44ACijC9U0w5tTQ==:lbYrIiMb0NlVjrBiStb23w==
+    materials:
+      getting_started_repo:
+        git: https://github.com/gocd-contrib/getting-started-repo.git
+        shallow_clone: false
+        auto_update: true
+        branch: master
+    stages:
+    - package:
+        fetch_materials: true
+        keep_artifacts: false
+        clean_workspace: false
+        approval:
+          type: success
+        jobs:
+          build:
+            timeout: 0
+            tasks:
+            - plugin:
+                configuration:
+                  id: script-executor
+                  version: '1'
+                options:
+                  script: 'echo "[Packaging] Service: ${GO_PIPELINE_NAME} - ${GO_PIPELINE_COUNTER}"'
+                  shtype: bash
+                run_if: passed
+    - deploy:
+        fetch_materials: true
+        keep_artifacts: false
+        clean_workspace: false
+        approval:
+          type: success
+        jobs:
+          build:
+            timeout: 0
+            tasks:
+            - plugin:
+                configuration:
+                  id: script-executor
+                  version: '1'
+                options:
+                  script: 'echo "[Deploying] Service: ${GO_PIPELINE_NAME} - ${GO_PIPELINE_COUNTER}"'
+                  shtype: bash
+                run_if: passed
